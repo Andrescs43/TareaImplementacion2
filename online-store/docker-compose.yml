@@ -1,0 +1,33 @@
+version: '3' # Version de docker-compose
+services:
+  clients:
+    build: ./clients # Carpeta donde se encuentra el Dockerfile de clientes
+    ports:
+      - "3001:3001" # Puerto de clientes
+  inventory:
+    build: ./inventory # Carpeta donde se encuentra el Dockerfile de inventario
+    ports:
+      - "3002:3002" # Puerto de inventario
+  orders:
+    build: ./orders # Carpeta donde se encuentra el Dockerfile de ordenes
+    ports:
+      - "3003:3003" # Puerto de ordenes
+  payments:
+    build: ./payments # Carpeta donde se encuentra el Dockerfile de pagos
+    ports:
+      - "3004:3004" # Puerto de pagos
+    volumes:
+      - ./payments/libraries:/usr/src/app/libraries # Montar el directorio 'libraries'
+      - ./payments/server.js:/usr/src/app/server.js # Montar el archivo server.js
+  store:
+    build: ./store # Carpeta donde se encuentra el Dockerfile de la tienda
+    ports:
+      - "3000:3000" # Puerto de la tienda
+    volumes:
+      - ./store/resourses:/usr/src/app/resourses # Montar el directorio 'resourses'
+      - ./store/server.js:/usr/src/app/server.js # Montar el archivo server.js
+    depends_on:
+      - clients
+      - inventory
+      - orders
+      - payments
