@@ -6,6 +6,8 @@ Integrantes del equipo:
 
 6A Arquitectura de Software UAZ
 
+La documentacion del sistema se encuentra en el archivo llamado:
+Documentacion_Arq_ImplementacionII.pdf
 
 Instrucciones de uso:
 - Abrir la aplicacion Docker Desktop
